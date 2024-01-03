@@ -1,3 +1,4 @@
+-- Create relational  DB of your choice with minimum 5 tables
 CREATE DATABASE Bookstore;
 
 USE Bookstore;
@@ -105,15 +106,15 @@ VALUES
   (1003, 8907, '2023-12-25', 78.69, 'Delivered'),
   (1004, 8910, '2023-12-28', 34.5, 'Processing'),
   (1005, 8920, '2023-01-01', 34.5, 'Shipped'),
-  (1006, 8921, '2023-01-01', 45.05, 'Shipped'),
-  (1007, 8922, '2023-01-02', 22.75, 'Processing'),
+  (1006, 8917, '2023-01-01', 45.05, 'Shipped'),
+  (1007, 8918, '2023-01-02', 22.75, 'Processing'),
   (1008, 8902, '2023-01-02', 111.5, 'Processing'),
   (1009, 8904, '2023-01-02', 345.0, 'Processing'),
   (1010, 8919, '2023-01-02', 67.93, 'Processing');
   
   CREATE TABLE OrderDetails (
-    ID VARCHAR(10),
-    OrderID VARCHAR(10),
+    ID VARCHAR(10) primary key,
+    OrderID INT(10),
     BookID VARCHAR(10),
     Quantity INT,
     Price DECIMAL(10, 2)
@@ -138,5 +139,28 @@ VALUES
   ('OD1015', 1010, 'B004', 1, 29.95),
   ('OD1016', 1010, 'B007', 2, 18.99);
   
+  -- Set foreign key constraint to create relations between tables
+ALTER TABLE Books
+ADD CONSTRAINT fk_Books_Authors
+FOREIGN KEY (AuthorID)
+REFERENCES Authors(AuthorID);
 
-  
+ALTER TABLE Books
+ADD CONSTRAINT fk_Books_Genre
+FOREIGN KEY (GenreID)
+REFERENCES Genre(GenreID);
+
+ALTER TABLE Orders
+ADD CONSTRAINT fk_Orders_Customers
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID);
+
+ALTER TABLE OrderDetails
+ADD CONSTRAINT fk_OrderDetails_Orders
+FOREIGN KEY (OrderID)
+REFERENCES Orders(OrderID);
+
+ALTER TABLE OrderDetails
+ADD CONSTRAINT fk_OrderDetails_Books
+FOREIGN KEY (BookID)
+REFERENCES Books(BookID);
