@@ -69,27 +69,27 @@ VALUES
 
 INSERT INTO customers (CustomerID, FirstName, LastName, Address, Email, Phone)
 VALUES
-  (8900, 'Alice', 'Johnson', '987 Maple St', 'alice.johnson@example.com', '222-333-4444'),
-  (8901, 'Bob', 'Smith', '123 Oak St', 'bob.smith@example.com', '111-222-3333'),
-  (8902, 'Diana', 'White', '567 Maple Dr', 'diana.white@example.com', '444-555-6666'),
-  (8903, 'Charlie', 'Brown', '654 Birch Ln', 'charlie.brown@example.com', '777-888-9999'),
-  (8904, 'Eva', 'Martinez', '321 Cedar Ave', 'eva.martinez@example.com', '111-222-3333'),
-  (8905, 'Frank', 'Taylor', '876 Pine Rd', 'frank.taylor@example.com', '444-555-6666'),
-  (8906, 'Grace', 'Davis', '543 Oak Blvd', 'grace.davis@example.com', '999-888-7777'),
-  (8907, 'Harry', 'Lee', '765 Elm St', 'harry.lee@example.com', '333-222-1111'),
-  (8908, 'Ivy', 'Garcia', '234 Walnut Dr', 'ivy.garcia@example.com', '666-777-8888'),
-  (8909, 'Jack', 'Miller', '789 Spruce Ct', 'jack.miller@example.com', '555-444-3333'),
-  (8910, 'Katie', 'Clark', '432 Pine Dr', 'katie.clark@example.com', '111-999-5555'),
-  (8911, 'Kevin', 'Garcia', '432 Oak Ln', 'kevin.garcia@example.com', '999-888-7777'),
-  (8912, 'Laura', 'Miller', '789 Cedar Ct', 'laura.miller@example.com', '222-333-4444'),
-  (8913, 'Leo', 'Scott', '876 Birch Blvd', 'leo.scott@example.com', '777-333-1111'),
-   (8914, 'Mia', 'Wong', '876 Elm St', 'mia.wong@example.com', '333-222-1111'),
-  (8915, 'Nathan', 'Lopez', '234 Cedar Ln', 'nathan.lopez@example.com', '666-777-8888'),
-  (8916, 'Olivia', 'Harris', '987 Pine Rd', 'olivia.harris@example.com', '555-444-3333'),
-  (8917, 'Paul', 'Young', '321 Oak Ave', 'paul.young@example.com', '111-999-5555'),
-  (8918, 'Quinn', 'Johnson', '543 Maple Dr', 'quinn.johnson@example.com', '999-888-7777'),
-  (8919, 'Ryan', 'Lee', '876 Birch Blvd', 'ryan.lee@example.com', '222-333-4444'),
-  (8920, 'Sara', 'Garcia', '765 Walnut Dr', 'sara.garcia@example.com', '777-333-1111');
+  (8900, 'Alice', 'Johnson', '987 Maple St', 'alice.johnson@example.com', '212-384-4384'),
+  (8901, 'Bob', 'Smith', '123 Oak St', 'bob.smith@example.com', '151-352-9933'),
+  (8902, 'Diana', 'White', '567 Maple Dr', 'diana.white@example.com', '940-505-6666'),
+  (8903, 'Charlie', 'Brown', '654 Birch Ln', 'charlie.brown@example.com', '257-868-9111'),
+  (8904, 'Eva', 'Martinez', '321 Cedar Ave', 'eva.martinez@example.com', '171-290-3362'),
+  (8905, 'Frank', 'Taylor', '876 Pine Rd', 'frank.taylor@example.com', '434-552-1166'),
+  (8906, 'Grace', 'Davis', '543 Oak Blvd', 'grace.davis@example.com', '999-908-7687'),
+  (8907, 'Harry', 'Lee', '765 Elm St', 'harry.lee@example.com', '453-352-1991'),
+  (8908, 'Ivy', 'Garcia', '234 Walnut Dr', 'ivy.garcia@example.com', '676-729-8381'),
+  (8909, 'Jack', 'Miller', '789 Spruce Ct', 'jack.miller@example.com', '875-324-3001'),
+  (8910, 'Katie', 'Clark', '432 Pine Dr', 'katie.clark@example.com', '190-949-5785'),
+  (8911, 'Kevin', 'Garcia', '432 Oak Ln', 'kevin.garcia@example.com', '997-666-7627'),
+  (8912, 'Laura', 'Miller', '789 Cedar Ct', 'laura.miller@example.com', '265-213-4084'),
+  (8913, 'Leo', 'Scott', '876 Birch Blvd', 'leo.scott@example.com', '827-453-1331'),
+   (8914, 'Mia', 'Wong', '876 Elm St', 'mia.wong@example.com', '903-002-5411'),
+  (8915, 'Nathan', 'Lopez', '234 Cedar Ln', 'nathan.lopez@example.com', '690-577-8244'),
+  (8916, 'Olivia', 'Harris', '987 Pine Rd', 'olivia.harris@example.com','425-411-3903'),
+  (8917, 'Paul', 'Young', '321 Oak Ave', 'paul.young@example.com', '185-979-4325'),
+  (8918, 'Quinn', 'Johnson', '543 Maple Dr', 'quinn.johnson@example.com', '399-018-7327'),
+  (8919, 'Ryan', 'Lee', '876 Birch Blvd', 'ryan.lee@example.com', '322-333-4564'),
+  (8920, 'Sara', 'Garcia', '765 Walnut Dr', 'sara.garcia@example.com', '977-023-1481');
   
   CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
@@ -164,3 +164,52 @@ ALTER TABLE OrderDetails
 ADD CONSTRAINT fk_OrderDetails_Books
 FOREIGN KEY (BookID)
 REFERENCES Books(BookID);
+
+
+
+-- Using any type of the joins create a view that combines multiple
+-- tables in a logical way
+
+-- What are the titles and prices of the fantasy books that we have?
+
+CREATE VIEW fantasy AS SELECT b.title, b.price FROM books AS b INNER JOIN genre as g ON b.GenreID = g.GenreID
+ WHERE g.description = "Fantasy";
+ 
+SELECT * from fantasy;
+
+
+ -- What are the names of people who bought 'One Hundred Years of Solitude'?
+ 
+ CREATE VIEW solitude AS SELECT c.firstname, c.lastname FROM customers AS c INNER JOIN orders AS o INNER JOIN 
+ orderdetails AS od INNER JOIN books AS b ON b.bookID = od.bookID  AND c.customerID = o.customerID
+ AND o.orderID = od.orderID where b.title = "One Hundred Years of Solitude";
+ 
+ SHOW FULL TABLES IN Bookstore WHERE TABLE_TYPE LIKE 'VIEW'; 
+ SELECT * from solitude;
+ 
+ -- In your database, create a stored function that can be applied to
+-- a query in your DB
+
+-- A function that states if a book is popular (bought in 3 or more copies):
+CREATE view copies_bought AS SELECT b.bookID, b.title, SUM(od.quantity) AS quantity
+FROM books AS b LEFT JOIN orderdetails AS od ON b.bookID = od.bookID GROUP BY b.bookID ;
+
+select * from copies_bought;
+
+DELIMITER //
+CREATE FUNCTION is_popular (quantity INT)
+RETURNS VARCHAR(20) DETERMINISTIC
+BEGIN
+	DECLARE result VARCHAR(20);
+    IF quantity >= 3 THEN
+		SET result = "popular";
+	ELSEIF quantity < 3 OR quantity IS NUll THEN
+		SET result = "not popular";
+	END IF;
+    RETURN result;
+END //
+DELIMITER ;
+
+SELECT copies.bookID, copies.title, is_popular(copies.quantity) FROM copies_bought AS copies;
+
+
