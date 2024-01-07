@@ -213,3 +213,14 @@ DELIMITER ;
 SELECT copies.bookID, copies.title, is_popular(copies.quantity) FROM copies_bought AS copies;
 
 
+-- Create an example query with a subquery to demonstrate how to extract data from your DB for analysis 
+
+SELECT
+    g.Description AS genre_description,
+    FORMAT(AVG(b.Price), 2) AS avg_price
+FROM
+    Genre g
+JOIN
+    Books b ON g.GenreID = b.GenreID
+GROUP BY
+    g.Description;
