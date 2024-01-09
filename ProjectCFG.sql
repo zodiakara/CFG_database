@@ -225,6 +225,13 @@ JOIN
 GROUP BY
     g.Description;
 
+-- Create an example query with a subquery to demonstrate how to extract data from your DB for analysis 
+-- Select books that were ordered on 2 January 2023:
+SELECT od.OrderID, b.Title FROM books AS b INNER JOIN orderdetails AS od 
+ON b.bookID = od.bookID 
+WHERE  od.orderID IN (SELECT o.OrderID FROM orders AS o WHERE o.OrderDate = '2023-01-02');
+
+
 
 -- In your database, create a stored procedure and demonstrate how it runs
 
@@ -232,12 +239,7 @@ DELIMITER //
 
 CREATE PROCEDURE GetUnfulfilledOrders()
 BEGIN
-SELECT
-*
-FROM
-Orders
-WHERE
-Status NOT IN ('Shipped', 'Delivered');
+SELECT * FROM Orders WHERE Status NOT IN ('Shipped', 'Delivered');
 END //
 
 DELIMITER ;
