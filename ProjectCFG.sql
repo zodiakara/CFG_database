@@ -224,3 +224,23 @@ JOIN
     Books b ON g.GenreID = b.GenreID
 GROUP BY
     g.Description;
+
+
+-- In your database, create a stored procedure and demonstrate how it runs
+
+DELIMITER //
+
+CREATE PROCEDURE GetUnfulfilledOrders()
+BEGIN
+SELECT
+*
+FROM
+Orders
+WHERE
+Status NOT IN ('Shipped', 'Delivered');
+END //
+
+DELIMITER ;
+
+CALL GetUnfulfilledOrders();
+
