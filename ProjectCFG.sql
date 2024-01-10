@@ -62,34 +62,36 @@ VALUES
     CustomerID INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    Address VARCHAR(255),
+    AddressHouseNumber INT,
+    AddressStreet VARCHAR(255),
     Email VARCHAR(100),
     Phone VARCHAR(20)
 );
 
-INSERT INTO customers (CustomerID, FirstName, LastName, Address, Email, Phone)
+INSERT INTO customers (CustomerID, FirstName, LastName, AddressHouseNumber, AddressStreet, Email, Phone)
 VALUES
-  (8900, 'Alice', 'Johnson', '987 Maple St', 'alice.johnson@example.com', '212-384-4384'),
-  (8901, 'Bob', 'Smith', '123 Oak St', 'bob.smith@example.com', '151-352-9933'),
-  (8902, 'Diana', 'White', '567 Maple Dr', 'diana.white@example.com', '940-505-6666'),
-  (8903, 'Charlie', 'Brown', '654 Birch Ln', 'charlie.brown@example.com', '257-868-9111'),
-  (8904, 'Eva', 'Martinez', '321 Cedar Ave', 'eva.martinez@example.com', '171-290-3362'),
-  (8905, 'Frank', 'Taylor', '876 Pine Rd', 'frank.taylor@example.com', '434-552-1166'),
-  (8906, 'Grace', 'Davis', '543 Oak Blvd', 'grace.davis@example.com', '999-908-7687'),
-  (8907, 'Harry', 'Lee', '765 Elm St', 'harry.lee@example.com', '453-352-1991'),
-  (8908, 'Ivy', 'Garcia', '234 Walnut Dr', 'ivy.garcia@example.com', '676-729-8381'),
-  (8909, 'Jack', 'Miller', '789 Spruce Ct', 'jack.miller@example.com', '875-324-3001'),
-  (8910, 'Katie', 'Clark', '432 Pine Dr', 'katie.clark@example.com', '190-949-5785'),
-  (8911, 'Kevin', 'Garcia', '432 Oak Ln', 'kevin.garcia@example.com', '997-666-7627'),
-  (8912, 'Laura', 'Miller', '789 Cedar Ct', 'laura.miller@example.com', '265-213-4084'),
-  (8913, 'Leo', 'Scott', '876 Birch Blvd', 'leo.scott@example.com', '827-453-1331'),
-   (8914, 'Mia', 'Wong', '876 Elm St', 'mia.wong@example.com', '903-002-5411'),
-  (8915, 'Nathan', 'Lopez', '234 Cedar Ln', 'nathan.lopez@example.com', '690-577-8244'),
-  (8916, 'Olivia', 'Harris', '987 Pine Rd', 'olivia.harris@example.com','425-411-3903'),
-  (8917, 'Paul', 'Young', '321 Oak Ave', 'paul.young@example.com', '185-979-4325'),
-  (8918, 'Quinn', 'Johnson', '543 Maple Dr', 'quinn.johnson@example.com', '399-018-7327'),
-  (8919, 'Ryan', 'Lee', '876 Birch Blvd', 'ryan.lee@example.com', '322-333-4564'),
-  (8920, 'Sara', 'Garcia', '765 Walnut Dr', 'sara.garcia@example.com', '977-023-1481');
+  (8900, 'Alice', 'Johnson', 987, 'Maple St', 'alice.johnson@example.com', '212-384-4384'),
+  (8901, 'Bob', 'Smith', 123, 'Oak St', 'bob.smith@example.com', '151-352-9933'),
+  (8902, 'Diana', 'White', 567, 'Maple Dr', 'diana.white@example.com', '940-505-6666'),
+  (8903, 'Charlie', 'Brown', 654, 'Birch Ln', 'charlie.brown@example.com', '257-868-9111'),
+  (8904, 'Eva', 'Martinez', 321 ,'Cedar Ave', 'eva.martinez@example.com', '171-290-3362'),
+  (8905, 'Frank', 'Taylor', 876 ,'Pine Rd', 'frank.taylor@example.com', '434-552-1166'),
+  (8906, 'Grace', 'Davis', 543 ,'Oak Blvd', 'grace.davis@example.com', '999-908-7687'),
+  (8907, 'Harry', 'Lee', 765, 'Elm St', 'harry.lee@example.com', '453-352-1991'),
+  (8908, 'Ivy', 'Garcia', 234, 'Walnut Dr', 'ivy.garcia@example.com', '676-729-8381'),
+  (8909, 'Jack', 'Miller', 789, 'Spruce Ct', 'jack.miller@example.com', '875-324-3001'),
+  (8910, 'Katie', 'Clark', 432, 'Pine Dr', 'katie.clark@example.com', '190-949-5785'),
+  (8911, 'Kevin', 'Garcia', 432, 'Oak Ln', 'kevin.garcia@example.com', '997-666-7627'),
+  (8912, 'Laura', 'Miller', 789, 'Cedar Ct', 'laura.miller@example.com', '265-213-4084'),
+  (8913, 'Leo', 'Scott', 876, 'Birch Blvd', 'leo.scott@example.com', '827-453-1331'),
+   (8914, 'Mia', 'Wong', 876, 'Elm St', 'mia.wong@example.com', '903-002-5411'),
+  (8915, 'Nathan', 'Lopez', 234, 'Cedar Ln', 'nathan.lopez@example.com', '690-577-8244'),
+  (8916, 'Olivia', 'Harris', 987, 'Pine Rd', 'olivia.harris@example.com','425-411-3903'),
+  (8917, 'Paul', 'Young', 321, 'Oak Ave', 'paul.young@example.com', '185-979-4325'),
+  (8918, 'Quinn', 'Johnson', 543, 'Maple Dr', 'quinn.johnson@example.com', '399-018-7327'),
+  (8919, 'Ryan', 'Lee', 876, 'Birch Blvd', 'ryan.lee@example.com', '322-333-4564'),
+  (8920, 'Sara', 'Garcia', 765, 'Walnut Dr', 'sara.garcia@example.com', '977-023-1481');
+  
   
   CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
