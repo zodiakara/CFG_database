@@ -246,3 +246,39 @@ DELIMITER ;
 
 CALL GetUnfulfilledOrders();
 
+
+
+
+
+-- In your database, create an event and demonstrate how it runs
+
+-- every month books' price gets higher by one dollar
+DELIMITER //
+CREATE EVENT price_raise
+ON SCHEDULE every 1 month
+DO BEGIN
+	UPDATE books SET price = price + 1;
+END//
+DELIMITER ;
+
+SELECT * FROM books;
+-- return to normal price:
+UPDATE books SET price = price - 1;
+
+
+
+
+-- Prepare an example query with group by and having to demonstrate
+-- how to extract data from your DB for analysis 
+
+SELECT
+    g.Description AS genre_description,
+    FORMAT(AVG(b.Price), 2) AS avg_price
+FROM
+    Genre g
+JOIN
+    Books b ON g.GenreID = b.GenreID
+GROUP BY
+    g.Description
+HAVING avg_price > 20;
+
