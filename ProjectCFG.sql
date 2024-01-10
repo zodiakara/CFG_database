@@ -215,17 +215,6 @@ SELECT copies.bookID, copies.title, is_popular(copies.quantity) FROM copies_boug
 
 -- Create an example query with a subquery to demonstrate how to extract data from your DB for analysis 
 
-SELECT
-    g.Description AS genre_description,
-    FORMAT(AVG(b.Price), 2) AS avg_price
-FROM
-    Genre g
-JOIN
-    Books b ON g.GenreID = b.GenreID
-GROUP BY
-    g.Description;
-
--- Create an example query with a subquery to demonstrate how to extract data from your DB for analysis 
 -- Select books that were ordered on 2 January 2023:
 SELECT od.OrderID, b.Title FROM books AS b INNER JOIN orderdetails AS od 
 ON b.bookID = od.bookID 
